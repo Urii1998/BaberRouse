@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth"> 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO --><title>AG HOUSE Barbershop | Барбершоп в Энгельсе | Отзывы и Цены</title>
+    <meta name="description" content="AG HOUSE Barbershop в Энгельсе (Тельмана, 150/7). 5 звезд, 47+ оценок. Мужские стрижки от 500₽. Подпишись на Telegram и получи скидку 10% на первый визит!">
+    <meta name="keywords" content="AG HOUSE, БарберШоп, Мужская стрижка, барбершоп Энгельс, стрижка бороды Энгельс, мужской парикмахер Энгельс, AG HOUSE Barbershop, барбершоп Тельмана Энгельс, отзывы, барбершоп цены, детская стрижка Энгельс, барбер пол, скидка барбершоп">
+    
+    <!-- НОВЫЙ ЭЛЕМЕНТ: Favicon --><link rel="icon" type="image/png" href="https://cdn4.telesco.pe/file/MkO4QJ0ZVSpQaX7jsjOqiiWMH9Sxa3YWeXe47ZwJSYKD0-WHECZ6H5kQGcYZ7WuVEu43QTQe-UrAozJwm7jqQo02CoUBzPWhOeQOE81eZD3PUx56JE1YM-4bH7hrtF2zotvdSRewIkRsGP059KULjR-aklYONd5XSddLSanzpUHp9rPQ9X-vFvqNUkqxGSpf7yI6zm1ndA514jvmwiaRi4NCuz0zbHFVbYIn119UOnHDnCLAMy05rTtPBEh1vIyfJlIP1I4YrV5fMS17VqEqqlos1g01twxjzQNo3hfySbQs7u3SqF0ByYuypMBvOncDY56Pws3qIindvhIHc8kE6Q.jpg">
+    
+    <!-- Подключение Tailwind CSS для стилей --><script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Шрифты --><link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+
+    <!-- Библиотека иконок Lucide --><script src="https://unpkg.com/lucide@latest"></script>
+    
+    <style>
+        :root {
+            --brand-gold: #c09a6b;
+            --brand-dark: #111827; /* Темно-серый, почти черный */
+            --brand-pole-red: #d93025;
+            --brand-pole-blue: #4285f4;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #000;
+        }
+        
+        .font-heading {
+            font-family: 'Oswald', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .text-brand-gold { color: var(--brand-gold); }
+        .bg-brand-gold { background-color: var(--brand-gold); }
+        .hover\:bg-brand-gold-dark:hover { background-color: #a9875f; }
+        .border-brand-gold { border-color: var(--brand-gold); }
+        .bg-brand-dark { background-color: var(--brand-dark); }
+
+        /* --- Анимация появления секций при скролле --- */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Прелоадер --- */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease-out;
+        }
+
+        .barber-pole {
+            width: 80px;
+            height: 250px;
+            background-color: #fff;
+            border: 6px solid var(--brand-gold);
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
+        }
+
+        .barber-pole::before, .barber-pole::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 12px;
+            background-color: var(--brand-gold);
+        }
+        .barber-pole::before { top: 0; }
+        .barber-pole::after { bottom: 0; }
+
+        .stripes {
+            height: 400px;
+            width: 150%;
+            position: absolute;
+            top: -75px;
+            left: -25%;
+            background: repeating-linear-gradient(
+                45deg,
+                var(--brand-pole-red),
+                var(--brand-pole-red) 30px,
+                #fff 30px,
+                #fff 60px,
+                var(--brand-pole-blue) 60px,
+                var(--brand-pole-blue) 90px,
+                #fff 90px,
+                #fff 120px
+            );
+            animation: rotate-stripes 2s linear infinite;
+        }
+
+        @keyframes rotate-stripes {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-120px); }
+        }
+        /* --- Конец Прелоадера --- */
+
+        /* Стили для иконок Lucide */
+        .lucide {
+            width: 1.25em; /* 20px */
+            height: 1.25em; /* 20px */
+            stroke-width: 2;
+        }
+        .lucide-lg {
+            width: 2.5em; /* 40px */
+            height: 2.5em; /* 40px */
+        }
+        .lucide-sm {
+            width: 1em; /* 16px */
+            height: 1em; /* 16px */
+        }
+    </style>
+</head>
+<body class="bg-black text-gray-200">
+
+    <!-- Прелоадер (Экран загрузки) --><div id="preloader">
+        <div class="barber-pole">
+            <div class="stripes"></div>
+        </div>
+    </div>
+
+    <!-- "Липкая" Навигация --><nav id="navbar" class="sticky top-0 left-0 right-0 z-50 transition-all duration-300 bg-black/70 backdrop-blur-md">
+        <div class="container mx-auto max-w-6xl px-6">
+            <div class="flex justify-between items-center h-20">
+                <a href="#" class="text-2xl text-white font-heading tracking-widest">
+                    AG HOUSE
+                </a>
+                
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="#about" class="text-gray-300 hover:text-brand-gold transition duration-300">О нас</a>
+                    <a href="#services" class="text-gray-300 hover:text-brand-gold transition duration-300">Услуги</a>
+                    <a href="#reviews" class="text-gray-300 hover:text-brand-gold transition duration-300">Отзывы</a>
+                    <a href="#contact" class="text-gray-300 hover:text-brand-gold transition duration-300">Контакты</a>
+                    <a href="https://t.me/Goldboy0007" target="_blank" rel="noopener noreferrer"
+                       class="bg-brand-gold text-gray-900 text-sm font-bold py-2 px-5 rounded-lg shadow-lg uppercase tracking-wide transition duration-300 hover:bg-brand-gold-dark transform hover:scale-105">
+                        Записаться
+                    </a>
+                </div>
+                
+                <a href="https://t.me/Goldboy0007" target="_blank" rel="noopener noreferrer"
+                   class="md:hidden bg-brand-gold text-gray-900 text-sm font-bold py-2 px-5 rounded-lg shadow-lg uppercase tracking-wide transition duration-300 hover:bg-brand-gold-dark transform hover:scale-105">
+                    Записаться
+                </a>
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- 
+      Хедер (Шапка) и Главный экран - ОБНОВЛЕНО С НОВЫМ ЛОГОТИПОМ И ФОНОМ
+    --><header class="relative min-h-screen flex flex-col items-center justify-center text-center p-6 bg-black overflow-hidden -mt-20">
+        <!-- Фон деревянных досок --><div class="absolute inset-0 bg-cover bg-center" style="background-image: url(https://img.lovepik.com/bg/20231215/old-wooden-planks-background_2472941_wh860.png); opacity: 0.3;"></div>
+        
+        <div class="relative z-10 fade-in-section is-visible">
+            <!-- Новый логотип --><img src="https://cdn4.telesco.pe/file/MkO4QJ0ZVSpQaX7jsjOqiiWMH9Sxa3YWeXe47ZwJSYKD0-WHECZ6H5kQGcYZ7WuVEu43QTQe-UrAozJwm7jqQo02CoUBzPWhOeQOE81eZD3PUx56JE1YM-4bH7hrtF2zotvdSRewIkRsGP059KULjR-aklYONd5XSddLSanzpUHp9rPQ9X-vFvqNUkqxGSpf7yI6zm1ndA514jvmwiaRi4NCuz0zbHFVbYIn119UOnHDnCLAMy05rTtPBEh1vIyfJlIP1I4YrV5fMS17VqEqqlos1g01twxjzQNo3hfySbQs7u3SqF0ByYuypMBvOncDY56Pws3qIindvhIHc8kE6Q.jpg" 
+                 alt="Логотип AG HOUSE Barbershop" 
+                 class="w-48 h-48 md:w-64 md:h-64 mx-auto rounded-full shadow-lg border-4 border-brand-gold">
+            
+            <h1 class="text-5xl md:text-7xl font-heading text-white mt-6">
+                AG HOUSE
+            </h1>
+            <p class="text-2xl md:text-3xl font-light text-brand-gold mt-2">
+                BARBERSHOP
+            </p>
+            <p class="text-lg md:text-xl text-gray-300 mt-4 max-w-lg mx-auto">
+                Место, где твой стиль обретает форму. 5 звезд ⭐ / 47+ оценок в 2GIS.
+            </p>
+            
+            <a href="https://t.me/Goldboy0007" target="_blank" rel="noopener noreferrer"
+               class="mt-10 inline-block bg-brand-gold text-gray-900 text-lg font-bold py-3 px-10 rounded-lg shadow-lg uppercase tracking-wide transition duration-300 hover:bg-brand-gold-dark transform hover:scale-105">
+                Записаться
+            </a>
+        </div>
+    </header>
+
+    <!-- 
+      Секция "О Нас" (с иконками)
+    --><section id="about" class="py-20 px-6 bg-brand-dark fade-in-section">
+        <div class="container mx-auto max-w-4xl text-center">
+            <h2 class="text-4xl md:text-5xl font-heading text-white mb-6">
+                Искусство мужской стрижки
+            </h2>
+            <p class="text-lg text-gray-400 leading-relaxed">
+                AG HOUSE — это не просто парикмахерская, это мужской клуб с рейтингом <span class="text-brand-gold font-bold">5.0 на 2GIS</span>. Наш мастер — профессионал своего дела, готов подобрать идеальный образ. Мы ценим ваше время и гарантируем качество.
+            </p>
+            <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
+                <!-- Блоки из 2GIS с иконками --><div class="bg-gray-900 p-6 rounded-lg border border-gray-700 flex items-start space-x-4">
+                    <i data-lucide="credit-card" class="text-brand-gold lucide-lg flex-shrink-0 mt-1"></i>
+                    <div>
+                        <h3 class="text-xl font-heading text-brand-gold mb-2">Способы оплаты</h3>
+                        <p class="text-gray-300">Наличный расчёт</p>
+                        <p class="text-gray-300">Перевод с карты</p>
+                    </div>
+                </div>
+                <div class="bg-gray-900 p-6 rounded-lg border border-gray-700 flex items-start space-x-4">
+                    <i data-lucide="wheelchair" class="text-brand-gold lucide-lg flex-shrink-0 mt-1"></i>
+                    <div>
+                        <h3 class="text-xl font-heading text-brand-gold mb-2">Доступная среда</h3>
+                        <p class="text-gray-300">Пандус</p>
+                        <p class="text-gray-300">Доступный вход</p>
+                    </div>
+                </div>
+                <div class="bg-gray-900 p-6 rounded-lg border border-gray-700 flex items-start space-x-4">
+                    <i data-lucide="bus" class="text-brand-gold lucide-lg flex-shrink-0 mt-1"></i>
+                    <div>
+                        <h3 class="text-xl font-heading text-brand-gold mb-2">Транспорт</h3>
+                        <p class="text-gray-300">Остановка "ДК Строитель"</p>
+                        <p class="text-gray-300">27 парковок</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 
+      Секция "Акция - Скидка за подписку" (с иконкой)
+    --><section id="promo" class="py-20 px-6 bg-brand-gold text-gray-900 fade-in-section">
+        <div class="container mx-auto max-w-4xl text-center">
+            <h2 class="text-4xl md:text-5xl font-heading mb-4">
+                Скидка 10% на первый визит!
+            </h2>
+            <p class="text-xl md:text-2xl font-light mb-8">
+                Подпишитесь на наш <span class="font-bold">Telegram-канал</span>, покажите подписку администратору и получите скидку 10% на любую услугу в ваш первый визит.
+            </p>
+            <a href="https://t.me/AGHOUSEBARBER" target="_blank" rel="noopener noreferrer"
+               class="inline-flex items-center space-x-2 bg-black text-white text-lg font-bold py-3 px-10 rounded-lg shadow-lg uppercase tracking-wide transition duration-300 hover:bg-gray-800 transform hover:scale-105">
+                <i data-lucide="send" class="lucide-sm"></i>
+                <span>Подписаться в Telegram</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- 
+      Секция "Услуги" (с иконками и ховером)
+    --><section id="services" class="py-20 px-6 bg-black fade-in-section">
+        <div class="container mx-auto max-w-4xl">
+            <h2 class="text-4xl md:text-5xl font-heading text-white text-center mb-12">
+                Наши Услуги
+            </h2>
+            <div class="space-y-6">
+                <!-- Услуга 1 --><div class="flex items-center bg-brand-dark p-6 rounded-lg shadow-md border-l-4 border-brand-gold transition duration-300 hover:bg-gray-800 hover:shadow-xl">
+                    <i data-lucide="scissors" class="text-brand-gold lucide-lg mr-6"></i>
+                    <div class="flex-grow">
+                        <span class="text-xl text-gray-200">Мужская стрижка</span>
+                    </div>
+                    <span class="text-xl font-bold text-brand-gold">от 500 ₽</span>
+                </div>
+                <!-- Услуга 2 --><div class="flex items-center bg-brand-dark p-6 rounded-lg shadow-md border-l-4 border-brand-gold transition duration-300 hover:bg-gray-800 hover:shadow-xl">
+                    <i data-lucide="user" class="text-brand-gold lucide-lg mr-6"></i>
+                    <div class="flex-grow">
+                        <span class="text-xl text-gray-200">Детская стрижка</span>
+                    </div>
+                    <span class="text-xl font-bold text-brand-gold">от 500 ₽</span>
+                </div>
+                <!-- Услуга 3 --><div class="flex items-center bg-brand-dark p-6 rounded-lg shadow-md border border-gray-700 transition duration-300 hover:bg-gray-800 hover:border-brand-gold hover:shadow-xl">
+                    <i data-lucide="package" class="text-brand-gold lucide-lg mr-6"></i>
+                    <div class="flex-grow">
+                        <span class="text-xl text-gray-200">Стрижка + Борода</span>
+                    </div>
+                    <span class="text-xl font-bold text-brand-gold">от 1000 ₽</span>
+                </div>
+                <!-- Услуга 4 --><div class="flex items-center bg-brand-dark p-6 rounded-lg shadow-md border border-gray-700 transition duration-300 hover:bg-gray-800 hover:border-brand-gold hover:shadow-xl">
+                    <i data-lucide="sparkles" class="text-brand-gold lucide-lg mr-6"></i>
+                    <div class="flex-grow">
+                        <span class="text-xl text-gray-200">Королевское бритье</span>
+                    </div>
+                    <span class="text-xl font-bold text-brand-gold">от 800 ₽</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 
+      Секция "Портфолио" (с эффектом grayscale)
+    --><section id="gallery" class="py-20 px-6 bg-brand-dark fade-in-section">
+        <div class="container mx-auto">
+            <h2 class="text-4xl md:text-5xl font-heading text-white text-center mb-12">
+                Наши работы
+            </h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <!-- Эффект: grayscale hover:grayscale-0 --><img src="https://placehold.co/400x400/111827/c09a6b?text=Стильная+Стрижка" alt="[Изображение примера работы: стильная стрижка]" class="rounded-lg shadow-lg w-full h-auto aspect-square object-cover transition duration-500 hover:scale-105 grayscale hover:grayscale-0">
+                <img src="https://placehold.co/400x400/111827/c09a6b?text=Уход+за+Бородой" alt="[Изображение примера работы: уход за бородой]" class="rounded-lg shadow-lg w-full h-auto aspect-square object-cover transition duration-500 hover:scale-105 grayscale hover:grayscale-0">
+                <img src="https://placehold.co/400x400/111827/c09a6b?text=Классика" alt="[Изображение примера работы: классическая стрижка]" class="rounded-lg shadow-lg w-full h-auto aspect-square object-cover transition duration-500 hover:scale-105 grayscale hover:grayscale-0">
+                <img src="https://placehold.co/400x400/111827/c09a6b?text=Бритье" alt="[Изображение примера работы: бритье]" class="rounded-lg shadow-lg w-full h-auto aspect-square object-cover transition duration-500 hover:scale-105 grayscale hover:grayscale-0">
+            </div>
+        </div>
+    </section>
+
+    <!-- 
+      СЕКЦИЯ "Отзывы" (с иконками)
+    --><section id="reviews" class="py-20 px-6 bg-black fade-in-section">
+        <div class="container mx-auto max-w-4xl">
+            <h2 class="text-4xl md:text-5xl font-heading text-white text-center mb-12">
+                Что о нас говорят
+            </h2>
+            <div class="space-y-8">
+                <!-- Отзыв 1 --><div class="bg-brand-dark p-6 rounded-lg shadow-lg border-l-4 border-brand-gold relative">
+                    <i data-lucide="quote" class="absolute top-4 right-4 text-gray-700 opacity-50 lucide-lg"></i>
+                    <div class="flex justify-between items-center mb-2">
+                        <h4 class="text-xl font-bold text-white">Даниил Баширов</h4>
+                        <span class="text-brand-gold text-lg">★★★★★</span>
+                    </div>
+                    <p class="text-gray-300 text-lg pr-8">"Мастер профессионал своего дела 👍 Работа мастера понравилась, буду ходить только сюда 👍"</p>
+                </div>
+                <!-- Отзыв 2 --><div class="bg-brand-dark p-6 rounded-lg shadow-lg border-l-4 border-brand-gold relative">
+                    <i data-lucide="quote" class="absolute top-4 right-4 text-gray-700 opacity-50 lucide-lg"></i>
+                    <div class="flex justify-between items-center mb-2">
+                        <h4 class="text-xl font-bold text-white">Антон Кутузов</h4>
+                        <span class="text-brand-gold text-lg">★★★★★</span>
+                    </div>
+                    <p class="text-gray-300 text-lg pr-8">"Отличный барбер. Профессионал своего дела. Рекомендую!"</p>
+                </div>
+                <!-- Отзыв 3 --><div class="bg-brand-dark p-6 rounded-lg shadow-lg border-l-4 border-brand-gold relative">
+                    <i data-lucide="quote" class="absolute top-4 right-4 text-gray-700 opacity-50 lucide-lg"></i>
+                    <div class="flex justify-between items-center mb-2">
+                        <h4 class="text-xl font-bold text-white">Никита</h4>
+                        <span class="text-brand-gold text-lg">★★★★★</span>
+                    </div>
+                    <p class="text-gray-300 text-lg pr-8">"Всё очень круто"</p>
+                </div>
+                <!-- Отзыв 4 --><div class="bg-brand-dark p-6 rounded-lg shadow-lg border-l-4 border-brand-gold relative">
+                    <i data-lucide="quote" class="absolute top-4 right-4 text-gray-700 opacity-50 lucide-lg"></i>
+                    <div class="flex justify-between items-center mb-2">
+                        <h4 class="text-xl font-bold text-white">Равиль Махсотов</h4>
+                        <span class="text-brand-gold text-lg">★★★★★</span>
+                    </div>
+                    <p class="text-gray-300 text-lg pr-8">"Лучший барбер в городе, дешево, дерзко 👍👍"</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 
+      Секция "Контакты и Карта" (с иконками и кликабельной картой)
+    --><section id="contact" class="py-20 px-6 bg-brand-dark fade-in-section">
+        <div class="container mx-auto max-w-6xl">
+            <h2 class="text-4xl md:text-5xl font-heading text-white text-center mb-12">
+                Контакты
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
+                
+                <!-- Левая колонка: Информация с иконками --><div class="text-lg space-y-6">
+                    <div class="flex items-start space-x-4">
+                        <i data-lucide="map-pin" class="text-brand-gold lucide-lg flex-shrink-0 mt-1"></i>
+                        <div>
+                            <h3 class="text-xl font-heading text-brand-gold mb-1">Адрес</h3>
+                            <p>г. Энгельс, ул. Тельмана, 150/7</p>
+                            <p class="text-gray-400">Мельничный м-н</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-4">
+                        <i data-lucide="phone" class="text-brand-gold lucide-lg flex-shrink-0 mt-1"></i>
+                        <div>
+                            <h3 class="text-xl font-heading text-brand-gold mb-1">Телефон</h3>
+                            <a href="tel:+79648452333" class="hover:text-brand-gold transition duration-300">+7 964 845-23-33</a>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-4">
+                        <i data-lucide="clock" class="text-brand-gold lucide-lg flex-shrink-0 mt-1"></i>
+                        <div>
+                            <h3 class="text-xl font-heading text-brand-gold mb-1">Часы работы</h3>
+                            <p>Ежедневно: 09:00 – 20:00</p>
+                            <p class="text-gray-400">Открыто · по предварительной записи</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Правая колонка: КЛИКАБЕЛЬНАЯ Карта --><div>
+                    <h3 class="text-xl font-heading text-brand-gold mb-4 md:text-left text-center">Мы на карте</h3>
+                    <a href="https://2gis.ru/engels/search/AG%20HOUSE%20Barbershop%2C%20Тельмана%20150%2F7" target="_blank" rel="noopener noreferrer"
+                       class="block relative aspect-w-16 aspect-h-9 rounded-lg shadow-lg overflow-hidden border-2 border-brand-gold group">
+                        
+                        <img src="https://placehold.co/600x400/333/c09a6b?text=Нажмите+чтобы+открыть+2GIS" alt="[Изображение карты с местоположением барбершопа]" class="w-full h-full object-cover">
+                        
+                        <div class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <span class="text-white text-lg font-bold py-2 px-4 rounded bg-brand-gold/80">
+                                Открыть в 2GIS
+                            </span>
+                        </div>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 
+      Футер (Подвал) (с иконками)
+    --><footer class="py-10 px-6 bg-black border-t border-gray-800">
+        <div class="container mx-auto text-center text-gray-500">
+            <p>&copy; 2025 AG HOUSE Barbershop. Все права защищены.</p>
+            <div class="mt-6 flex justify-center space-x-8">
+                <a href="https://t.me/AGHOUSEBARBER" target="_blank" rel="noopener noreferrer" 
+                   class="text-gray-400 hover:text-brand-gold transition duration-300 flex flex-col items-center space-y-1">
+                    <i data-lucide="send" class="lucide-lg"></i>
+                    <span class="text-sm">Telegram</span>
+                </a>
+                <a href="https://wa.me/79648452333" target="_blank" rel="noopener noreferrer" 
+                   class="text-gray-400 hover:text-brand-gold transition duration-300 flex flex-col items-center space-y-1">
+                    <i data-lucide="smartphone" class="lucide-lg"></i> <!-- Иконка WhatsApp часто защищена, используем 'smartphone' --><span class="text-sm">WhatsApp</span>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 
+      JavaScript
+    --><script>
+        // --- Скрипт для Прелоадера ---
+        window.addEventListener('load', () => {
+            const preloader = document.getElementById('preloader');
+            if (preloader) {
+                setTimeout(() => {
+                    preloader.style.opacity = '0';
+                    setTimeout(() => {
+                        preloader.style.display = 'none';
+                    }, 500); 
+                }, 500);
+            }
+        });
+
+        // --- Скрипт для Анимации появления секций ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('.fade-in-section');
+
+            if ('IntersectionObserver' in window) {
+                const observer = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('is-visible');
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.1 });
+
+                sections.forEach(section => {
+                    observer.observe(section);
+                });
+            } else {
+                sections.forEach(section => {
+                    section.classList.add('is-visible');
+                });
+            }
+
+            // --- Сделать навбар непрозрачным при скролле ---
+            const navbar = document.getElementById('navbar');
+            if (navbar) {
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > 50) {
+                        navbar.classList.add('bg-black/100');
+                        navbar.classList.remove('bg-black/70');
+                    } else {
+                        navbar.classList.remove('bg-black/100');
+                        navbar.classList.add('bg-black/70');
+                    }
+                });
+            }
+
+            // --- Активация иконок Lucide ---
+            lucide.createIcons();
+        });
+    </script>
+
+</body>
+</html>
+
